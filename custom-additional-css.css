@@ -1,0 +1,83 @@
+/*
+ * J1 Website Agency - Custom Additional CSS
+ * Lives in: WordPress Admin > Appearance > Customize > Additional CSS
+ * This file is a backup copy for version history - editing it here does
+ * NOT change the live site. To apply changes, paste into the Customizer
+ * and click Publish.
+ */
+
+/* Fix: Kadence's default .gallery styling (for WP image galleries) conflicts with the custom Designs page section that also uses the class "gallery". This restores the intended stacked layout. */
+#j1-designs section.gallery {
+    display: block;
+}
+
+/* Mobile nav: collapse the custom J1 header links into a toggle button below 780px */
+.j1-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 26px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto;
+}
+.j1-menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: currentColor;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.j1-menu-toggle.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.j1-menu-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+}
+.j1-menu-toggle.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+@media (max-width: 780px) {
+    [id^="j1-"] > nav .nav-links,
+    [id^="j1-"] > nav .nav-right {
+          display: none !important;
+          width: 100%;
+    }
+    [id^="j1-"] > nav.j1-nav-open .nav-links {
+          display: flex !important;
+          flex-direction: column;
+    }
+    [id^="j1-"] > nav.j1-nav-open .nav-right {
+          display: flex !important;
+          justify-content: center;
+          padding: 8px 0;
+    }
+    .j1-menu-toggle {
+          display: flex !important;
+    }
+}
+
+/* Mobile nav polish: keep the toggle icon pinned in place instead of shifting when the menu opens */
+@media (max-width: 780px) {
+    [id^="j1-"] > nav {
+          position: relative;
+    }
+    [id^="j1-"] > nav .logo-row {
+          order: 0;
+    }
+    .j1-menu-toggle {
+          order: 1;
+    }
+    [id^="j1-"] > nav .nav-links {
+          order: 2;
+          flex-basis: 100%;
+    }
+    [id^="j1-"] > nav .nav-right {
+          order: 3;
+          flex-basis: 100%;
+    }
+}
